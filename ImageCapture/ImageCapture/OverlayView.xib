@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IPViewControllerCustom" customModule="ImageCapture" customModuleProvider="target">
+            <connections>
+                <outlet property="overlayView" destination="iN0-l3-epB" id="3Py-Fl-awk"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rru-qk-SRM" userLabel="Overlay View (Toolbar)">
+                    <rect key="frame" x="0.0" y="615" width="367" height="44"/>
+                    <items>
+                        <barButtonItem title="Done" id="EZE-SK-aZX">
+                            <connections>
+                                <action selector="didTapDone:" destination="-1" id="yjC-iV-fzI"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jv4-gE-MUt"/>
+                        <barButtonItem title="Capture" id="jtM-fn-uMV">
+                            <connections>
+                                <action selector="didTapCapture:" destination="-1" id="glg-7a-b2b"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+            </subviews>
+            <constraints>
+                <constraint firstItem="rru-qk-SRM" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="JKn-ge-iPR"/>
+                <constraint firstAttribute="trailingMargin" secondItem="rru-qk-SRM" secondAttribute="trailing" id="UdV-Wv-LaW"/>
+                <constraint firstItem="rru-qk-SRM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="-8" id="mNX-xt-7BN"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="33" y="167"/>
+        </view>
+    </objects>
+</document>
