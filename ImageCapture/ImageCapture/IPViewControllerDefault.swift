@@ -17,7 +17,7 @@ class IPViewControllerDefault: UIViewController,UIImagePickerControllerDelegate,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.takePictures()
+        self.didTapTakePhoto(nil)
 
     }
 
@@ -53,9 +53,25 @@ class IPViewControllerDefault: UIViewController,UIImagePickerControllerDelegate,
     }
     
     // MARK: - UIAction
-    @IBAction func didTapTakePhoto(_ sender: Any) {
-//        self.takePictures()
-        self.takePictures()
+    @IBAction func didTapTakePhoto(_ sender: Any?) {
+        let authStatus:AVAuthorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        if authStatus == .denied {
+            // Denies access to camera, alert the user.
+            // The user has previously denied access. Remind the user that we need camera access to be useful.
+            let alertController:UIAlertController = UIAlertController.init(title: "Unable to access the Camera", message: "To enable access, go to Settings > Privacy > Camera and turn on Camera access for this app.", preferredStyle: .alert)
+            let ok:UIAlertAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+            alertController.addAction(ok)
+            self.present(alertController, animated: true, completion: nil)
+        }else if authStatus == .notDetermined {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) in
+                if granted {
+                    // Allowed access to camera, go ahead and present the UIImagePickerController.
+                    self.takePictures()
+                }
+            })
+        }else{
+            self.takePictures()
+        }
     }
     
     @IBAction func didTapCancel(_ sender: Any) {
